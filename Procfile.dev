@@ -1,0 +1,1 @@
+web: puma-dev -stop && tail -f log/development.log

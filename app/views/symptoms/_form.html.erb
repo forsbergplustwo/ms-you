@@ -1,0 +1,37 @@
+<%= form_with(model: symptom) do |form| %>
+  <% if symptom.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(symptom.errors.count, "error") %> prohibited this symptom from being saved:</h2>
+
+      <ul>
+        <% symptom.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.datetime_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :severity, style: "display: block" %>
+    <%= form.select :severity, options_for_select(Symptom.severities.map {|k, v| [k.humanize.capitalize, k]}, symptom.severity) %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

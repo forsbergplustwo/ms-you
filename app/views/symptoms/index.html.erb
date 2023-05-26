@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Symptoms</h1>
+
+<div id="symptoms">
+  <% @symptoms.each do |symptom| %>
+    <%= render symptom %>
+    <p>
+      <%= link_to "Show this symptom", symptom %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New symptom", new_symptom_path %>
