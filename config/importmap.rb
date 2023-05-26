@@ -7,3 +7,5 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.8
 pin "polaris-view-components", to: "polaris_view_components.js"
+pin "chartkick", to: "chartkick.js"
+pin "highcharts" # @11.0.1

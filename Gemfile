@@ -75,3 +75,7 @@ end
 gem "polaris_view_components", "~> 0.13.5"
 
 gem "hotwire-livereload", "~> 1.2"
+
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.2"

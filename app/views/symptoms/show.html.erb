@@ -13,6 +13,10 @@
   ]
   ) %>
 
+  <%= polaris_card do %>
+    <%= area_chart([{name: "Severity", data: @measurements.group_by_week(:created_at).sum(:severity) }]) %>
+  <% end %>
+
   <%= polaris_card(title: "Updates") do %>
 
     <%= polaris_data_table(@measurements) do |table| %>
