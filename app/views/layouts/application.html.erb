@@ -13,7 +13,15 @@
   </head>
 
   <body style="<%= polaris_body_styles %>">
-
-    <%= yield %>
+    <%= polaris_frame(
+      logo: {
+        url: "/",
+        src: image_path("logo.svg"),
+        width: "128px"
+      }
+    ) do |frame| %>
+      <%= render "layouts/frame/topbar", frame: frame %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

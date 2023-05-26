@@ -1,17 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<%= polaris_page(
+  title: @symptom.title,
+  subtitle: @symptom.description,
+  back_url: symptoms_path,
+) do |page| %>
 
-<%= render @symptom %>
+  <% page.primary_action() { "Log update" } %>
+  <% page.action_group(
+    title: "More actions",
+    actions: [
+    { content: "Edit", url: edit_symptom_path(@symptom) },
+    { content: "Delete", url: symptom_path(@symptom), destructive: true, method: :delete },
+  ]
+  ) %>
 
-<div>
-  <%= link_to "Edit this symptom", edit_symptom_path(@symptom) %> |
-  <%= link_to "Back to symptoms", symptoms_path %>
+  <%= polaris_card(title: "Updates") do %>
 
-  <%= button_to "Destroy this symptom", @symptom, method: :delete %>
-</div>
+    <%= polaris_data_table(@measurements) do |table| %>
+      <% table.column("Date") do |measurement| %>
+        <%= measurement.created_at %>
+      <% end %>
+      <% table.column("Severity") do |measurement| %>
+        <%= measurement.severity %>
+      <% end %>
+      <% table.column("Notes") do |measurement| %>
+        TODO
+      <% end %>
+      <% table.column("Actions") do |measurement| %>
+        TODO
+      <% end %>
+    <% end %>
 
-<div id="measurements">
-<h3>Measurements</h3>
-  <% @measurements.each do |measurement| %>
-    <%= render measurement %>
   <% end %>
-</div>
+
+<% end %>

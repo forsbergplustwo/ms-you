@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<%= polaris_page(
+  title: "Current Symptoms",
+  subtitle: "Track your symptoms over time",
+) do |page| %>
 
-<h1>Symptoms</h1>
+  <% page.primary_action(url: new_symptom_path) { "New symptom" } %>
 
-<div id="symptoms">
-  <% @symptoms.each do |symptom| %>
-    <%= render symptom %>
-    <p>
-      <%= link_to "Show this symptom", symptom %>
-    </p>
+  <%= polaris_card do %>
+
+    <%= polaris_data_table(@symptoms) do |table| %>
+      <% table.column("Title") do |symptom| %>
+        <%= symptom.title %>
+      <% end %>
+      <% table.column("Description") do |symptom| %>
+        <%= symptom.description %>
+      <% end %>
+      <% table.column("Severity") do |symptom| %>
+        <%= symptom.severity %>
+      <% end %>
+      <% table.column("Actions") do |symptom| %>
+        <%= polaris_button(url: symptom_path(symptom)) { "View" } %>
+      <% end %>
+    <% end %>
+
   <% end %>
-</div>
 
-<%= link_to "New symptom", new_symptom_path %>
+<% end %>
