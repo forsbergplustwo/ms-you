@@ -9,12 +9,13 @@
     title: "More actions",
     actions: [
     { content: "Edit", url: edit_symptom_path(@symptom) },
-    { content: "Delete", url: symptom_path(@symptom), destructive: true, method: :delete },
+    { content: "Delete", url: symptom_path(@symptom), destructive: true, data: {turbo_method: :delete}
+},
   ]
   ) %>
 
   <%= polaris_card do %>
-    <%= area_chart([{name: "Severity", data: @measurements.group_by_week(:created_at).sum(:severity) }]) %>
+    <%= area_chart([{name: "Severity", data: @measurements.group_by_day(:created_at).sum(:severity) }]) %>
   <% end %>
 
   <%= polaris_card(title: "Updates") do %>

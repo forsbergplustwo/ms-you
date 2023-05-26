@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MsYou</title>
+    <title>MS+you | Symptoms tracker for people with Multiple Sclerosis</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -22,6 +22,11 @@
     ) do |frame| %>
       <%= render "layouts/frame/topbar", frame: frame %>
       <%= yield %>
+
+      <%= polaris_footer_help do %>
+        Made with love by
+        <%= polaris_link(url: "https://www.forsbergplustwo.com", external: true) { "FORSBERG+two" } %>
+      <% end %>
     <% end %>
   </body>
 </html>
