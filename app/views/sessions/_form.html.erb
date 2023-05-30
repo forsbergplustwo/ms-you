@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :session, target: "_top" do %>
-  <%= form_with(url: session_path, builder: Polaris::FormBuilder) do |form| %>
+  <%= form_for(:session, url: session_path, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
     <%= polaris_form_layout do |form_layout| %>
 
       <% form_layout.item do %>

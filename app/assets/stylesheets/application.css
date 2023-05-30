@@ -18,3 +18,15 @@
   height: 2px;
   background-color: #16a679;
 }
+
+#flash-messages {
+  text-align: center;
+}
+
+.Polaris-Frame-ToastManager__ToastWrapper {
+  bottom: 0;
+}
+
+.Polaris-Frame-Toast {
+  transform: translate(-50%, -50%);
+}

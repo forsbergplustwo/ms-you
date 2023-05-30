@@ -1,5 +1,5 @@
 <%= turbo_frame_tag user, target: "_top" do %>
-  <%= form_with(model: user, builder: Polaris::FormBuilder) do |form| %>
+  <%= form_with(model: user, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
     <%= polaris_form_layout do |form_layout| %>
 
       <% if user.errors.any? %>

@@ -4,11 +4,23 @@ class User < ApplicationRecord
   has_many :measurements, through: :symptoms
 
   AVAILABLE_LANGUAGES =[
+    "Danish",
     "English",
-    "Spanish",
+    "Finnish",
     "French",
-    "German,",
-    "Pirate Speak"
+    "German",
+    "Icelandic",
+    "Italian",
+    "Japanese",
+    "Norwegian",
+    "Portuguese",
+    "Spanish",
+    "Swedish",
+    "Ukrainian"
+  ].freeze
+
+  AVAILABLE_LANGUAGES_FOR_FUN = [
+    "Pirate",
   ].freeze
 
 

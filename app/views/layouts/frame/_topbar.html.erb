@@ -1,27 +1,39 @@
 <% frame.top_bar do |top_bar| %>
 
-  <% if signed_in? %>
+  <% top_bar.secondary_menu do |secondary_menu| %>
+    <%= polaris_popover do |popover| %>
 
-    <% top_bar.secondary_menu do |secondary_menu| %>
-      <%= polaris_popover do |popover| %>
+      <% popover.button do |button| %>
+        <%= it(current_user.preferred_language) %>
+        <% button.icon(name: "LanguageMinor") %>
+      <% end %>
 
-        <% popover.button do |button| %>
-          <%= current_user.preferred_language %>
-          <% button.icon(name: "LanguageMinor") %>
+      <%= polaris_action_list do |action_list| %>
+
+        <% action_list.section do |section| %>
+          <% User::AVAILABLE_LANGUAGES.each do |language| %>
+            <% section.item(
+              url: preferred_languages_path(language: language),
+            ) { language } %>
+          <% end %>
         <% end %>
 
-        <%= polaris_action_list do |action_list| %>
-          <% User::AVAILABLE_LANGUAGES.each do |language| %>
-            <% action_list.item(
-              url: user_preferred_languages_path(user_id: current_user.id, language: language),
-            ) { it(language) } %>
+        <% action_list.section(title: "For fun") do |section| %>
+          <% User::AVAILABLE_LANGUAGES_FOR_FUN.each do |language| %>
+            <% section.item(
+              url: preferred_languages_path(language: language),
+            ) { language } %>
           <% end %>
         <% end %>
 
       <% end %>
-    <% end %>
 
-    <% top_bar.user_menu(name: current_user.email, detail: current_user.preferred_language) do |user_menu| %>
+    <% end %>
+  <% end %>
+
+  <% if signed_in? %>
+    <% top_bar.user_menu(name: it("Account"), detail: current_user.email) do |user_menu| %>
+
       <% user_menu.avatar(
         initials: current_user.email[0..1],
         name: current_user.email,
@@ -34,6 +46,21 @@
           data: { turbo_method: :delete }
         ) { it('Log out') } %>
       <% end %>
+
     <% end %>
+
+  <% else %>
+
+    <% top_bar.user_menu(name: it("Account"), detail: it("Not logged in")) do |user_menu| %>
+
+      <%= polaris_action_list do |action_list| %>
+        <% action_list.item(
+          icon: "SecureMajor",
+          url: sign_in_path,
+        ) { it('Log in') } %>
+      <% end %>
+    <% end %>
+
   <% end %>
+
 <% end %>

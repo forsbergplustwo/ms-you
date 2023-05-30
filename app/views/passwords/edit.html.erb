@@ -7,12 +7,12 @@
   <%= polaris_card do %>
 
     <%= turbo_frame_tag :password, target: "_top" do %>
-      <%= form_with(url: [@user, :password, token: @user.confirmation_token],
-        html: { method: :put }, builder: Polaris::FormBuilder) do |form| %>
+      <%= form_for(:password_reset, url: [@user, :password, token: @user.confirmation_token],
+        html: { method: :put }, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
         <%= polaris_form_layout do |form_layout| %>
 
           <% form_layout.item do %>
-            <%= form.polaris_text_field :email, label: it("Email"), type: :email, required: true %>
+            <%= form.polaris_text_field :password, label: it("New password"), type: :password, required: true %>
           <% end %>
 
           <% form_layout.item do %>
@@ -20,7 +20,7 @@
               submit: true,
               primary: true,
               data: {form_target: "submitButton"},
-            ) { it('Submit') } %>
+            ) { it('Change password') } %>
           <% end %>
 
         <% end %>

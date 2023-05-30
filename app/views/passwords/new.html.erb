@@ -11,7 +11,7 @@
   <%= polaris_card do %>
 
     <%= turbo_frame_tag :password, target: "_top" do %>
-      <%= form_with(url: passwords_path, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
+      <%= form_for(:password, url: passwords_path, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
         <%= polaris_form_layout do |form_layout| %>
 
           <% form_layout.item do %>

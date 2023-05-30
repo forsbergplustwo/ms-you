@@ -21,11 +21,14 @@
       }
     ) do |frame| %>
       <%= render "layouts/frame/topbar", frame: frame %>
+
       <%= yield %>
 
       <%= polaris_footer_help do %>
         <%= it("Made with love by") %> <%= polaris_link(url: "https://www.forsbergplustwo.com", external: true) { "FORSBERG+two" } %>
       <% end %>
+
+      <%= render "layouts/flash_messages" %>
     <% end %>
   </body>
 </html>

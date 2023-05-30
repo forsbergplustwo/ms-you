@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   resources :symptoms
   resources :measurements, only: %i[ destroy ]
 
-  resources :users do
-    scope module: :users do
-      resource :preferred_languages, only: :show
-    end
+  scope module: :users do
+    resource :preferred_languages, only: :show
   end
 
   constraints Clearance::Constraints::SignedIn.new do
@@ -13,6 +11,6 @@ Rails.application.routes.draw do
   end
 
   constraints Clearance::Constraints::SignedOut.new do
-    root to: "users#sign_in"
+    root to: "clearance/sessions#new"
   end
 end
