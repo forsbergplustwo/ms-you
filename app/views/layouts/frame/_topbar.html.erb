@@ -14,6 +14,7 @@
           <% User::AVAILABLE_LANGUAGES.each do |language| %>
             <% section.item(
               url: preferred_languages_path(language: language),
+              data: { turbo: false },
             ) { language } %>
           <% end %>
         <% end %>
@@ -22,6 +23,7 @@
           <% User::AVAILABLE_LANGUAGES_FOR_FUN.each do |language| %>
             <% section.item(
               url: preferred_languages_path(language: language),
+              data: { turbo: false },
             ) { language } %>
           <% end %>
         <% end %>
