@@ -32,14 +32,14 @@
       outline: true,
       data: {
         controller: "polaris",
-        target: "#destroy-modal",
+        target: "#destroy-symptom-modal",
         action: "polaris#openModal",
       }
-    ) { it("Delete") } %>
+    ) { it("Delete symptom") } %>
   <% end %>
 
 <% end %>
 
-<%= render "symptoms/modals/destroy", url: symptom_path(@symptom) %>
-
 <%= render "symptoms/modals/new_measurement", symptom: @symptom %>
+
+<%= render "modals/destroy", id: "destroy-symptom-modal", url: symptom_path(@symptom) %>

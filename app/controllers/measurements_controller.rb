@@ -8,7 +8,7 @@ class MeasurementsController < ApplicationController
       @measurement.destroy
 
       respond_to do |format|
-        format.html { redirect_to symptom_url(@measurement.symptom), notice: "Measurement was successfully destroyed." }
+        format.html { redirect_to symptom_url(@measurement.symptom), notice: I18n.it("Measurement was successfully destroyed.", current_user.preferred_language) }
         format.json { head :no_content }
       end
     end

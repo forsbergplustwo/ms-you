@@ -1,9 +1,9 @@
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_text_field :description, label: it('Description'),  required: symptom.new_record?, value: symptom.current_description %>
+  <%= measurement_fields.polaris_text_field :description, label: it('Description'), multiline: true, required: symptom.new_record?, value: symptom.current_description %>
 <% end %>
 
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_text_field :measured_at, label: it('Date of symptom change'), required: true, type: :date %>
+  <%= measurement_fields.polaris_text_field :measured_at, label: it('Date of symptom change'), required: true, type: :date, value: Time.current.to_date %>
 <% end %>
 
 <% form_layout.item do %>

@@ -1,6 +1,9 @@
 Chartkick.options = {
   colors: ["#5912D5", "#3063E1"],
   library: {
+    chart: {
+      zoomType: 'x',
+    },
     plotOptions: {
       series: {
         fillOpacity: 0.2,

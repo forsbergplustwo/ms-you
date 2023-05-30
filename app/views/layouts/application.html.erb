@@ -21,6 +21,7 @@
       }
     ) do |frame| %>
       <%= render "layouts/frame/topbar", frame: frame %>
+      <%= render "layouts/frame/toasts", frame: frame %>
 
       <%= yield %>
 
@@ -28,7 +29,8 @@
         <%= it("Made with love by") %> <%= polaris_link(url: "https://www.forsbergplustwo.com", external: true) { "FORSBERG+two" } %>
       <% end %>
 
-      <%= render "layouts/flash_messages" %>
+      <%= render "modals/destroy", id: "destroy-account-modal", url: delete_user_path(current_user) if current_user&.id.present? %>
+
     <% end %>
   </body>
 </html>

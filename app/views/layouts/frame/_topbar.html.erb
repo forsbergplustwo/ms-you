@@ -40,11 +40,23 @@
       ) %>
 
       <%= polaris_action_list do |action_list| %>
+
+        <% action_list.item(
+          icon: "DeleteMinor",
+          destructive: true,
+          data: {
+            controller: "polaris",
+            target: "#destroy-account-modal",
+            action: "polaris#openModal",
+          }
+        ) { it("Delete account") } %>
+
         <% action_list.item(
           icon: "LogOutMinor",
           url: sign_out_path,
           data: { turbo_method: :delete }
         ) { it('Log out') } %>
+
       <% end %>
 
     <% end %>
@@ -52,7 +64,6 @@
   <% else %>
 
     <% top_bar.user_menu(name: it("Account"), detail: it("Not logged in")) do |user_menu| %>
-
       <%= polaris_action_list do |action_list| %>
         <% action_list.item(
           icon: "SecureMajor",
@@ -62,5 +73,4 @@
     <% end %>
 
   <% end %>
-
 <% end %>

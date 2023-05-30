@@ -3,11 +3,8 @@
   <% table.column(it('Title')) do |symptom| %>
     <%= polaris_link(url: symptom_path(symptom), monochrome: true) do %>
       <%= polaris_text_style(variation: :strong) { symptom.title }%>
-    <% end %>
-  <% end %>
-
-  <% table.column(it('Description')) do |symptom| %>
-    <%= symptom.current_description %>
+    <% end %><br>
+    <%= polaris_text_style(variation: :subdued) {  symptom.current_description } %>
   <% end %>
 
   <% table.column(it('Current severity')) do |symptom| %>

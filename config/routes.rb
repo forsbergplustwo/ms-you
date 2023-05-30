@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resource :preferred_languages, only: :show
   end
 
+  delete "/users/:id", to: "users#destroy", as: :delete_user
+
   constraints Clearance::Constraints::SignedIn.new do
     root to: "symptoms#index", as: :signed_in_root
   end

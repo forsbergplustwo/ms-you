@@ -16,7 +16,9 @@ class Measurement < ApplicationRecord
   def self.by_day_and_severity(user, records)
 
     days = records.group_by{|m| m.measured_at.to_date }
-    # days = days.transform_keys { |k| k - 1.day }.merge(days)
+
+    days = days.transform_keys { |k| k - 1.days }.merge(days)
+    days[Date.today] = [] if days[Date.today].nil?
 
     days.map do |day, measurements|
       day_sum = 0

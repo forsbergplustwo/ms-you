@@ -27,7 +27,7 @@ class SymptomsController < ApplicationController
 
     respond_to do |format|
       if @symptom.save
-        format.html { redirect_to symptom_url(@symptom), notice: "Symptom was successfully created." }
+        format.html { redirect_to symptom_url(@symptom), notice: I18n.it("Symptom was successfully created", current_user.preferred_language) }
         format.json { render :show, status: :created, location: @symptom }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class SymptomsController < ApplicationController
   def update
     respond_to do |format|
       if @symptom.update(symptom_params)
-        format.html { redirect_to symptom_url(@symptom), notice: "Symptom was successfully updated." }
+        format.html { redirect_to symptom_url(@symptom), notice: I18n.it("Symptom was successfully updated.", current_user.preferred_language) }
         format.json { render :show, status: :ok, location: @symptom }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class SymptomsController < ApplicationController
     @symptom.destroy
 
     respond_to do |format|
-      format.html { redirect_to symptoms_url, notice: "Symptom was successfully destroyed." }
+      format.html { redirect_to symptoms_url, notice:I18n.it("Symptom was successfully destroyed.", current_user.preferred_language) }
       format.json { head :no_content }
     end
   end
