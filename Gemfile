@@ -72,10 +72,9 @@ group :test do
   gem "webdrivers"
 end
 
+# APP SPECIFIC GEMS
 gem "polaris_view_components", "~> 0.13.5"
-
 gem "hotwire-livereload", "~> 1.2"
-
 gem "chartkick", "~> 5.0"
-
 gem "groupdate", "~> 6.2"
+gem "dotenv", "~> 2.8", :group => :development
