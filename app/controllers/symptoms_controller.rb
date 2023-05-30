@@ -1,9 +1,10 @@
 class SymptomsController < ApplicationController
+  before_action :require_login
   before_action :set_symptom, only: %i[ show edit update destroy ]
 
   # GET /symptoms or /symptoms.json
   def index
-    @symptoms = Symptom.all
+    @symptoms = current_user.symptoms
   end
 
   # GET /symptoms/1 or /symptoms/1.json
@@ -13,7 +14,7 @@ class SymptomsController < ApplicationController
 
   # GET /symptoms/new
   def new
-    @symptom = Symptom.new
+    @symptom = current_user.symptoms.new
   end
 
   # GET /symptoms/1/edit
@@ -22,7 +23,7 @@ class SymptomsController < ApplicationController
 
   # POST /symptoms or /symptoms.json
   def create
-    @symptom = Symptom.new(symptom_params)
+    @symptom = current_user.symptoms.new(symptom_params)
 
     respond_to do |format|
       if @symptom.save
@@ -61,7 +62,7 @@ class SymptomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_symptom
-      @symptom = Symptom.find(params[:id])
+      @symptom = current_user.symptoms.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -7,13 +7,13 @@ module SymptomsHelper
   def severity_name(severity)
     case severity
     when 0
-      'None'
+      it('None')
     when 1
-      'Mild'
+      it('Mild')
     when 2
-      'Moderate'
+      it('Moderate')
     when 3
-      'Severe'
+      it('Severe')
     end
   end
 

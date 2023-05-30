@@ -73,6 +73,7 @@ group :test do
 end
 
 # APP SPECIFIC GEMS
+gem "letter_opener", group: :development
 gem "dotenv", "~> 2.8", :group => :development
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
@@ -84,3 +85,5 @@ gem "groupdate", "~> 6.2"
 gem "instant18n", "~> 0.4.0"
 
 gem "http_logger", "~> 0.7.0"
+
+gem "clearance", "~> 2.6"

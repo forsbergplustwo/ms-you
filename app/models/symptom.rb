@@ -1,8 +1,10 @@
 class Symptom < ApplicationRecord
   has_many :measurements, dependent: :destroy
+  belongs_to :user
 
   accepts_nested_attributes_for :measurements, reject_if: :all_blank
 
+  validates :user, presence: true
   validates :title, presence: true
 
   def current_severity

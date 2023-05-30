@@ -1,0 +1,14 @@
+<%= polaris_page(
+  narrow_width: true,
+  title: it("Sign up"),
+  subtitle: it("Create an account to save your symptoms and track your progress."),
+  secondary_actions: [
+    { content: it("Log in"), url: sign_in_path },
+  ]
+) do |page| %>
+
+  <%= polaris_card do %>
+      <%= render "users/form", user: @user %>
+  <% end %>
+
+<% end %>

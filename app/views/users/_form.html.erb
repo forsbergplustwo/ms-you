@@ -1,0 +1,29 @@
+<%= turbo_frame_tag user, target: "_top" do %>
+  <%= form_with(model: user, builder: Polaris::FormBuilder) do |form| %>
+    <%= polaris_form_layout do |form_layout| %>
+
+      <% if user.errors.any? %>
+        <% form_layout.item do %>
+          <%= form.errors_summary %>
+        <% end %>
+      <% end %>
+
+      <% form_layout.item do %>
+        <%= form.polaris_text_field :email, label: it("Email"), type: :email, required: true %>
+      <% end %>
+
+      <% form_layout.item do %>
+        <%= form.polaris_text_field :password, label: it("Password"), type: :password, required: true %>
+      <% end %>
+
+      <% form_layout.item do %>
+        <%= polaris_button(
+          submit: true,
+          primary: true,
+          data: {form_target: "submitButton"},
+        ) { it('Save') } %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>

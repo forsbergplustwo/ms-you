@@ -1,0 +1,35 @@
+<%= polaris_page(
+  narrow_width: true,
+  title: it("Forgot your password?"),
+  subtitle: it("Enter your email address and we will send you a link to reset your password."),
+  secondary_actions: [
+    { content: it("Sign up"), url: sign_up_path },
+    { content: it("Log in"), url: sign_in_path },
+  ]
+) do |page| %>
+
+  <%= polaris_card do %>
+
+    <%= turbo_frame_tag :password, target: "_top" do %>
+      <%= form_with(url: passwords_path, builder: Polaris::FormBuilder, data: {turbo: false}, format: :html) do |form| %>
+        <%= polaris_form_layout do |form_layout| %>
+
+          <% form_layout.item do %>
+            <%= form.polaris_text_field :email, label: it("Email"), type: :email, required: true %>
+          <% end %>
+
+          <% form_layout.item do %>
+            <%= polaris_button(
+              submit: true,
+              primary: true,
+              data: {form_target: "submitButton"},
+            ) { it('Submit') } %>
+          <% end %>
+
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+<% end %>

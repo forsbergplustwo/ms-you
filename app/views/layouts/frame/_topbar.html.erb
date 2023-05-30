@@ -1,17 +1,39 @@
 <% frame.top_bar do |top_bar| %>
-  <% top_bar.user_menu(name: current_user.name, detail: current_user.preferred_language) do |user_menu| %>
-    <% user_menu.avatar(
-      initials: current_user.name[0..1],
-      name: current_user.name,
-      # source: current_user.gravatar_image_url,
-    ) %>
 
-    <%= polaris_action_list do |action_list| %>
-      <% action_list.item(
-        icon: "LogOutMinor",
-        url: "", #sign_out_path(shop: current_shop.shopify_domain),
-        data: {turbo: false}
-      ) { it('Log out') } %>
+  <% if signed_in? %>
+
+    <% top_bar.secondary_menu do |secondary_menu| %>
+      <%= polaris_popover do |popover| %>
+
+        <% popover.button do |button| %>
+          <%= current_user.preferred_language %>
+          <% button.icon(name: "LanguageMinor") %>
+        <% end %>
+
+        <%= polaris_action_list do |action_list| %>
+          <% User::AVAILABLE_LANGUAGES.each do |language| %>
+            <% action_list.item(
+              url: user_preferred_languages_path(user_id: current_user.id, language: language),
+            ) { it(language) } %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+    <% top_bar.user_menu(name: current_user.email, detail: current_user.preferred_language) do |user_menu| %>
+      <% user_menu.avatar(
+        initials: current_user.email[0..1],
+        name: current_user.email,
+      ) %>
+
+      <%= polaris_action_list do |action_list| %>
+        <% action_list.item(
+          icon: "LogOutMinor",
+          url: sign_out_path,
+          data: { turbo_method: :delete }
+        ) { it('Log out') } %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
