@@ -1,13 +1,13 @@
 <%= polaris_page(
   narrow_width: true,
-  title: t("actions.edit"),
+  title: it('Edit'),
   back_url: symptom_path(@symptom),
 ) do |page| %>
 
   <% page.action_group(
-    title: "More actions",
+    title: it('More actions'),
     actions: [
-      { content: t("actions.delete"),
+      { content: it('Delete'),
         destructive: true,
         data: {
           controller: "polaris",

@@ -1,11 +1,11 @@
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_text_field :description, required: symptom.new_record?, value: symptom.current_description %>
+  <%= measurement_fields.polaris_text_field :description, label: it('Description'),  required: symptom.new_record?, value: symptom.current_description %>
 <% end %>
 
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_text_field :measured_at, required: true, type: :date, label: "Date" %>
+  <%= measurement_fields.polaris_text_field :measured_at, label: it('Date of symptom change'), required: true, type: :date %>
 <% end %>
 
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_select :severity, required: true, options: severity_options, selected: symptom.current_severity %>
+  <%= measurement_fields.polaris_select :severity, label: it('Severity'), required: true, options: severity_options, selected: symptom.current_severity %>
 <% end %>

@@ -1,6 +1,6 @@
-<%= polaris_modal(id: "destroy-modal", title: t(".title")) do |modal| %>
+<%= polaris_modal(id: "destroy-modal", title: it("Delete")) do |modal| %>
   <%= polaris_text_container do %>
-    <p><%= t(".message_html") %></p>
+    <p><%= it("Are you sure you want to delete it? This cannot be undone.") %></p>
   <% end %>
 
   <% modal.primary_action(
@@ -8,9 +8,9 @@
     url: url,
     data: {turbo_method: :delete},
   ) do %>
-    <%= t("actions.delete") %>
+    <%= it("Delete") %>
   <% end %>
   <% modal.secondary_action(data: {action: "polaris-modal#close"}) do %>
-    <%= t("actions.cancel") %>
+    <%= it("Cancel") %>
   <% end %>
 <% end %>

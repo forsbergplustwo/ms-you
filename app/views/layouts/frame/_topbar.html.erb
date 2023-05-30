@@ -1,8 +1,8 @@
 <% frame.top_bar do |top_bar| %>
-  <% top_bar.user_menu(name: "current_user.name", detail: "") do |user_menu| %>
+  <% top_bar.user_menu(name: current_user.name, detail: current_user.preferred_language) do |user_menu| %>
     <% user_menu.avatar(
-      initials: "SF",
-      name: "current_user.name",
+      initials: current_user.name[0..1],
+      name: current_user.name,
       # source: current_user.gravatar_image_url,
     ) %>
 
@@ -11,7 +11,7 @@
         icon: "LogOutMinor",
         url: "", #sign_out_path(shop: current_shop.shopify_domain),
         data: {turbo: false}
-      ) { "Log out" } %>
+      ) { it('Log out') } %>
     <% end %>
   <% end %>
 <% end %>

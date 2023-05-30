@@ -25,7 +25,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
@@ -62,7 +62,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  # config.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true

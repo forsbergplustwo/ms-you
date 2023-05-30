@@ -1,9 +1,9 @@
 <%= polaris_page(
-  title: "Symptoms tracker",
-  subtitle: @symptoms.present? ? "Track your symptoms over time. The graph shows the total severity of all your symptoms, so you can see when an attack is coming on or is starting to subside." : "Track your symptoms over time.",
+  title: it('Symptoms tracker'),
+  subtitle: @symptoms.present? ? it("Track your symptoms over time. The graph shows the total severity of all your symptoms, so you can see when an attack is coming on or is starting to subside.") : it("Track your symptoms over time."),
 ) do |page| %>
 
-  <% page.primary_action(url: new_symptom_path) { "Add symptom" } %>
+  <% page.primary_action(url: new_symptom_path) { it("Add symptom") } %>
 
   <% if @symptoms.any? %>
 
@@ -19,11 +19,11 @@
 
     <%= polaris_card do %>
       <%= polaris_empty_state(
-        heading: "No symptoms yet",
+        heading: it("No symptoms yet"),
         image: "https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png",
       ) do |state| %>
-        <% state.primary_action(url: new_symptom_path) { "Add symptom" } %>
-        <p>Add a symptom to start tracking it. You can update symptoms as the severity changes, to keep track of attack and recovery periods.</p>
+        <% state.primary_action(url: new_symptom_path) { it("Add symptom") } %>
+        <p><%= it("Add a symptom to start tracking it. You can update symptoms as the severity changes, to keep track of attack and recovery periods.") %></p>
       <% end %>
     <% end %>
 

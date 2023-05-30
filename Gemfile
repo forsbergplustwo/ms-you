@@ -73,8 +73,14 @@ group :test do
 end
 
 # APP SPECIFIC GEMS
+gem "dotenv", "~> 2.8", :group => :development
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 gem "polaris_view_components", "~> 0.13.5"
 gem "hotwire-livereload", "~> 1.2"
 gem "chartkick", "~> 5.0"
 gem "groupdate", "~> 6.2"
-gem "dotenv", "~> 2.8", :group => :development
+
+gem "instant18n", "~> 0.4.0"
+
+gem "http_logger", "~> 0.7.0"

@@ -4,7 +4,7 @@
   subtitle: @symptom.current_description,
   back_url: symptoms_path,
   secondary_actions: [
-    { content: t("actions.edit"), url: edit_symptom_path(@symptom) },
+    { content: it("Edit"), url: edit_symptom_path(@symptom) },
   ]
 ) do |page| %>
 
@@ -16,13 +16,13 @@
         controller: "polaris",
         target: "#symptom-#{@symptom.id}-new-measurement-modal",
         action: "polaris#openModal",
-      }) { "Log update" } %>
+      }) { it("Log symptom change") } %>
 
   <%= polaris_card do %>
     <%= render "symptoms/charts/show" %>
   <% end %>
 
-  <%= polaris_card(title: "Logged updates") do %>
+  <%= polaris_card(title: it("Logged symptom changes")) do %>
     <%= render "measurements/table", measurements: @measurements %>
   <% end %>
 
@@ -35,7 +35,7 @@
         target: "#destroy-modal",
         action: "polaris#openModal",
       }
-    ) { t("actions.delete") } %>
+    ) { it("Delete") } %>
   <% end %>
 
 <% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MS+you | Symptoms tracker for people with Multiple Sclerosis</title>
+    <title>MS+you | <%= it("Symptoms tracker for people with Multiple Sclerosis") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -24,8 +24,7 @@
       <%= yield %>
 
       <%= polaris_footer_help do %>
-        Made with love by
-        <%= polaris_link(url: "https://www.forsbergplustwo.com", external: true) { "FORSBERG+two" } %>
+        <%= it("Made with love by") %> <%= polaris_link(url: "https://www.forsbergplustwo.com", external: true) { "FORSBERG+two" } %>
       <% end %>
     <% end %>
   </body>

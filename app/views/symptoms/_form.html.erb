@@ -13,7 +13,7 @@
       <% end %>
 
       <% form_layout.item do %>
-        <%= form.polaris_text_field :title, required: true %>
+        <%= form.polaris_text_field :title, label: it("Title"), required: true %>
       <% end %>
 
       <% if symptom.new_record? %>
@@ -27,7 +27,7 @@
           submit: true,
           primary: true,
           data: {form_target: "submitButton"},
-        ) { t("actions.save") } %>
+        ) { it('Save') } %>
       <% end %>
 
     <% end %>

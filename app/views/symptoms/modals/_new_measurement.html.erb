@@ -1,4 +1,4 @@
-<%= polaris_modal(id: "symptom-#{symptom.id}-new-measurement-modal", title: t(".title")) do |modal| %>
+<%= polaris_modal(id: "symptom-#{symptom.id}-new-measurement-modal", title: it("Log update")) do |modal| %>
 
   <%= turbo_frame_tag symptom, target: "_top" do %>
     <%= form_with(
@@ -28,9 +28,9 @@
     submit: true,
     form: "symptom-#{symptom.id}-new-measurement-form",
   ) do %>
-    <%= t("actions.save") %>
+    <%= it("Save") %>
   <% end %>
   <% modal.secondary_action(data: {action: "polaris-modal#close"}) do %>
-    <%= t("actions.cancel") %>
+    <%= it("Cancel") %>
   <% end %>
 <% end %>
