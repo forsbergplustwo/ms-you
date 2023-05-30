@@ -1,0 +1,19 @@
+<%= polaris_index_table(measurements.reverse) do |table| %>
+  <% table.column("Date") do |measurement| %>
+    <%= polaris_text_style(variation: :strong) { l(measurement.measured_at.to_date, format: :long) } %>
+  <% end %>
+  <% table.column("Severity") do |measurement| %>
+    <%= render "symptoms/severity_badge", severity: measurement.severity %>
+  <% end %>
+  <% table.column("Description") do |measurement| %>
+    <%= measurement.description %>
+  <% end %>
+  <% table.column("Actions") do |measurement| %>
+    <%= polaris_button(
+      url: measurement_path(measurement),
+      data: { turbo_method: :delete }
+    ) do |button| %>
+      <% button.icon(name: "DeleteMinor") %>
+    <% end %>
+  <% end %>
+<% end %>

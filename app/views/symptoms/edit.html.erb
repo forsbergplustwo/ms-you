@@ -1,10 +1,28 @@
-<h1>Editing symptom</h1>
+<%= polaris_page(
+  narrow_width: true,
+  title: t("actions.edit"),
+  back_url: symptom_path(@symptom),
+) do |page| %>
 
-<%= render "form", symptom: @symptom %>
+  <% page.action_group(
+    title: "More actions",
+    actions: [
+      { content: t("actions.delete"),
+        destructive: true,
+        data: {
+          controller: "polaris",
+          target: "#destroy-modal",
+          action: "polaris#openModal",
+        }
+      },
+    ]
+  ) %>
 
-<br>
+  <%= polaris_card do %>
+    <%= render "form", symptom: @symptom %>
+  <% end %>
 
-<div>
-  <%= link_to "Show this symptom", @symptom %> |
-  <%= link_to "Back to symptoms", symptoms_path %>
-</div>
+
+<% end %>
+
+<%= render "symptoms/modals/destroy", url: symptom_path(@symptom) %>

@@ -1,37 +1,36 @@
-<%= form_with(model: symptom) do |form| %>
-  <% if symptom.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(symptom.errors.count, "error") %> prohibited this symptom from being saved:</h2>
+<%= turbo_frame_tag symptom, target: "_top" do %>
+  <%= form_with(
+    model: symptom,
+    builder: Polaris::FormBuilder,
+  ) do |form| %>
 
-      <ul>
-        <% symptom.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <%= polaris_form_layout do |form_layout| %>
+
+      <% if symptom.errors.any? %>
+        <% form_layout.item do %>
+          <%= form.errors_summary %>
         <% end %>
-      </ul>
-    </div>
+      <% end %>
+
+      <% form_layout.item do %>
+        <%= form.polaris_text_field :title, required: true %>
+      <% end %>
+
+      <% if symptom.new_record? %>
+        <%= form.fields_for :measurements, symptom.measurements.new do |measurement_fields| %>
+          <%= render "measurements/form_fields", symptom: symptom ,measurement_fields: measurement_fields, form_layout: form_layout %>
+        <% end %>
+      <% end %>
+
+      <% form_layout.item do %>
+        <%= polaris_button(
+          submit: true,
+          primary: true,
+          data: {form_target: "submitButton"},
+        ) { t("actions.save") } %>
+      <% end %>
+
+    <% end %>
+
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.datetime_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :severity, style: "display: block" %>
-    <%= form.select :severity, options_for_select(Symptom.severities.map {|k, v| [k.humanize.capitalize, k]}, symptom.severity) %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

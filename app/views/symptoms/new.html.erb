@@ -1,9 +1,11 @@
-<h1>New symptom</h1>
+<%= polaris_page(
+  narrow_width: true,
+  title: "Add new symptom",
+  subtitle: "Describe a new symptom you're experiencing. If you're not sure what to write, try to describe how it feels, where it is, and how severe it is.",
+  back_url: symptoms_path,
+) do |page| %>
 
-<%= render "form", symptom: @symptom %>
-
-<br>
-
-<div>
-  <%= link_to "Back to symptoms", symptoms_path %>
-</div>
+  <%= polaris_card do %>
+    <%= render "form", symptom: @symptom %>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<%= polaris_index_table(symptoms) do |table| %>
+
+  <% table.column("Title") do |symptom| %>
+    <%= polaris_link(url: symptom_path(symptom), monochrome: true) do %>
+      <%= polaris_text_style(variation: :strong) { symptom.title }%>
+    <% end %>
+  <% end %>
+
+  <% table.column("Description") do |symptom| %>
+    <%= symptom.current_description %>
+  <% end %>
+
+  <% table.column("Current severity") do |symptom| %>
+    <%= render "symptoms/severity_badge", severity: symptom.current_severity %>
+  <% end %>
+
+  <% table.column("Actions") do |symptom| %>
+    <%= polaris_button(url: symptom_path(symptom)) { "View & update" } %>
+  <% end %>
+
+<% end %>

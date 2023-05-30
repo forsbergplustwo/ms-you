@@ -1,20 +1,34 @@
 class Symptom < ApplicationRecord
-  enum severity: { gone: 0, mild: 1, moderate: 2, severe: 3 }
   has_many :measurements, dependent: :destroy
 
-  after_create :create_starting_measurement
-  after_update :create_update_measurement
+  accepts_nested_attributes_for :measurements, reject_if: :all_blank
 
-  def create_starting_measurement
-    create_measurement(start_date)
+  validates :title, presence: true
+
+  def current_severity
+    latest_measurement&.severity || 0
   end
 
-  def create_update_measurement
-    create_measurement(Time.now)
+  def current_description
+    latest_measurement&.description
   end
 
-  def create_measurement(date)
-    Measurement.create!(symptom: self, severity: self.severity_before_type_cast, created_at: date, updated_at: date)
+  def severity_on_day(day)
+    measurements.where("measured_at <= ?", day).order(measured_at: :desc).first&.severity || 0
+  end
+
+  def chart_by_day_and_severity
+    days = measurements.group_by{|m| m.measured_at.to_date }
+    # days = days.transform_keys { |k| k - 3.days }.merge(days)
+    days.map do |day, measurements|
+      [day, severity_on_day(day)]
+    end.sort
+  end
+
+  private
+
+  def latest_measurement
+    measurements.order(measured_at: :desc).first
   end
 
 end

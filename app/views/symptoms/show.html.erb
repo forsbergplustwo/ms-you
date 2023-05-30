@@ -1,40 +1,45 @@
 <%= polaris_page(
+  narrow_width: true,
   title: @symptom.title,
-  subtitle: @symptom.description,
+  subtitle: @symptom.current_description,
   back_url: symptoms_path,
+  secondary_actions: [
+    { content: t("actions.edit"), url: edit_symptom_path(@symptom) },
+  ]
 ) do |page| %>
 
-  <% page.primary_action() { "Log update" } %>
-  <% page.action_group(
-    title: "More actions",
-    actions: [
-    { content: "Edit", url: edit_symptom_path(@symptom) },
-    { content: "Delete", url: symptom_path(@symptom), destructive: true, data: {turbo_method: :delete}
-},
-  ]
-  ) %>
-
-  <%= polaris_card do %>
-    <%= area_chart([{name: "Severity", data: @measurements.group_by_day(:created_at).sum(:severity) }]) %>
+  <% page.title_metadata do %>
+    <%= render "symptoms/severity_badge", severity: @symptom.current_severity %>
   <% end %>
 
-  <%= polaris_card(title: "Updates") do %>
+  <% page.primary_action(data: {
+        controller: "polaris",
+        target: "#symptom-#{@symptom.id}-new-measurement-modal",
+        action: "polaris#openModal",
+      }) { "Log update" } %>
 
-    <%= polaris_data_table(@measurements) do |table| %>
-      <% table.column("Date") do |measurement| %>
-        <%= measurement.created_at %>
-      <% end %>
-      <% table.column("Severity") do |measurement| %>
-        <%= measurement.severity %>
-      <% end %>
-      <% table.column("Notes") do |measurement| %>
-        TODO
-      <% end %>
-      <% table.column("Actions") do |measurement| %>
-        TODO
-      <% end %>
-    <% end %>
+  <%= polaris_card do %>
+    <%= render "symptoms/charts/show" %>
+  <% end %>
 
+  <%= polaris_card(title: "Logged updates") do %>
+    <%= render "measurements/table", measurements: @measurements %>
+  <% end %>
+
+  <%= polaris_page_actions do |actions| %>
+    <% actions.secondary_action(
+      destructive: true,
+      outline: true,
+      data: {
+        controller: "polaris",
+        target: "#destroy-modal",
+        action: "polaris#openModal",
+      }
+    ) { t("actions.delete") } %>
   <% end %>
 
 <% end %>
+
+<%= render "symptoms/modals/destroy", url: symptom_path(@symptom) %>
+
+<%= render "symptoms/modals/new_measurement", symptom: @symptom %>

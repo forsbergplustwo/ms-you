@@ -1,0 +1,36 @@
+<%= polaris_modal(id: "symptom-#{symptom.id}-new-measurement-modal", title: t(".title")) do |modal| %>
+
+  <%= turbo_frame_tag symptom, target: "_top" do %>
+    <%= form_with(
+      id: "symptom-#{symptom.id}-new-measurement-form",
+      model: symptom,
+      builder: Polaris::FormBuilder,
+    ) do |form| %>
+
+      <%= polaris_form_layout do |form_layout| %>
+
+        <% if symptom.errors.any? %>
+          <% form_layout.item do %>
+            <%= form.errors_summary %>
+          <% end %>
+        <% end %>
+
+        <%= form.fields_for :measurements, symptom.measurements.new do |measurement_fields| %>
+          <%= render "measurements/form_fields", symptom: symptom, measurement_fields: measurement_fields, form_layout: form_layout %>
+        <% end %>
+
+      <% end %>
+
+    <% end %>
+  <% end %>
+
+  <% modal.primary_action(
+    submit: true,
+    form: "symptom-#{symptom.id}-new-measurement-form",
+  ) do %>
+    <%= t("actions.save") %>
+  <% end %>
+  <% modal.secondary_action(data: {action: "polaris-modal#close"}) do %>
+    <%= t("actions.cancel") %>
+  <% end %>
+<% end %>

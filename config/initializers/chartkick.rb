@@ -30,6 +30,7 @@ Chartkick.options = {
     },
     yAxis: {
       gridLineColor: "#EEEEEF",
+      allowDecimals: false,
       labels: {
         style: {
           color: "#70707A",
