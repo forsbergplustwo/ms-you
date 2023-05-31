@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
   delete "/users/:id", to: "users#destroy", as: :delete_user
 
+  resources :users, only: [:create] do
+    resource :password,
+      controller: "clearance/passwords",
+      only: [:create, :edit, :update]
+  end
+
   constraints Clearance::Constraints::SignedIn.new do
     root to: "symptoms#index", as: :signed_in_root
   end

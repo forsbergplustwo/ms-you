@@ -68,9 +68,11 @@
     <% top_bar.user_menu(name: it("Account"), detail: it("Not logged in")) do |user_menu| %>
       <%= polaris_action_list do |action_list| %>
         <% action_list.item(
-          icon: "SecureMajor",
           url: sign_in_path,
         ) { it('Log in') } %>
+        <% action_list.item(
+          url: sign_up_path,
+        ) { it('Sign up') } %>
       <% end %>
     <% end %>
 

@@ -7,5 +7,5 @@
 <% end %>
 
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_select :severity, label: it('Severity'), required: true, options: severity_options, selected: symptom.current_severity %>
+  <%= measurement_fields.polaris_select :severity, label: it('Severity'), required: true, options: severity_select_options, selected: symptom.current_severity.to_s %>
 <% end %>

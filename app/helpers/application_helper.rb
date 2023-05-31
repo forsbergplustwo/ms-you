@@ -6,4 +6,5 @@ module ApplicationHelper
     text = text[0..-2] if text[-1] == "." && text.length < 200
     text
   end
+
 end

@@ -1,8 +1,10 @@
 <%= polaris_page(
   narrow_width: true,
   title: it("Password reset"),
-  subtitle: t(".description"),
 ) do |page| %>
 
+<%= polaris_card do %>
+  <p><%= it("You will receive an email within the next few minutes. It contains instructions for changing your password.") %>
+<% end %>
 
 <% end %>

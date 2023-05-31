@@ -17,6 +17,10 @@
       <% end %>
 
       <% form_layout.item do %>
+        <%= polaris_select(name: "user[preferred_language]", id: "user_preferred_language", options: User::AVAILABLE_LANGUAGES, label: it('Language'), selected: current_user.preferred_language) %>
+      <% end %>
+
+      <% form_layout.item do %>
         <%= polaris_button(
           submit: true,
           primary: true,

@@ -10,6 +10,8 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "polaris_view_components" %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
+
+    <meta name="turbo-cache-control" content="no-cache">
   </head>
 
   <body style="<%= polaris_body_styles %>">

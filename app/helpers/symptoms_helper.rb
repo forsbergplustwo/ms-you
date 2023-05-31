@@ -1,6 +1,6 @@
 module SymptomsHelper
 
-  def severity_options
+  def severity_select_options
     Measurement::SEVERITIES_MAPPING.keys.collect { |severity| [severity_name(severity), severity] }
   end
 
