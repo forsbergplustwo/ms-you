@@ -1,0 +1,44 @@
+<% !signed_in? || unless content_for?(:hide_navigation) %>
+  <% frame.navigation do |navigation| %>
+    <% navigation.section(
+        title: "MS+you",
+        fill: true
+    ) do |section| %>
+      <% section.item(
+        url: root_path,
+        label: it("Home"),
+        icon: "HomeMajor",
+        selected: nav_item_selected?(root_path),
+        link_arguments: {}
+      ) %>
+      <% section.item(
+        url: "/journal_entries",
+        label: it("Notes"),
+        icon: "BlogMajor",
+        selected: nav_item_selected?("/journal_entries"),
+        link_arguments: {}
+      ) %>
+    <% end %>
+    <% navigation.section do |section| %>
+      <% section.item(
+        url: "/settings",
+        label: it("Settings"),
+        icon: "SettingsMajor",
+        selected: nav_item_selected?("/settings"),
+        link_arguments: {}
+      ) %>
+    <% end %>
+    <% navigation.section do |section| %>
+      <% section.item(
+        url: sign_out_path,
+        label: it("Log out"),
+        icon: "MobileBackArrowMajor",
+        link_arguments: {
+          data: {
+            turbo_method: :delete
+          }
+        }
+      )%>
+    <% end %>
+  <% end %>
+<% end %>

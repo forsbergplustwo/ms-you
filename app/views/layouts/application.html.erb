@@ -22,7 +22,8 @@
         width: "128px"
       }
     ) do |frame| %>
-      <%= render "layouts/frame/topbar", frame: frame %>
+      <%= render "layouts/frame/top_bar", frame: frame %>
+      <%= render "layouts/frame/navigation", frame: frame %>
       <%= render "layouts/frame/toasts", frame: frame %>
 
       <%= yield %>

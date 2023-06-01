@@ -1,1 +1,14 @@
-<%= area_chart([{ name: it('Severity'), data: @symptom.chart_by_day_and_severity }]) %>
+<%= tag.div data: {
+  controller: "highchart",
+  highchart_series_data_value: chart_data_formatter(name: it('Severity'), data: @symptoms_chart_data),
+  highchart_annotations_label_data_value: [
+    {
+      "point": "1682805600000",
+      "text": 'Annotation 1'
+    },
+    {
+      "point": "1683842400000",
+      "text": 'Annotation 2',
+    }
+  ]
+} %>

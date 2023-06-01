@@ -5,10 +5,12 @@ class SymptomsController < ApplicationController
   # GET /symptoms or /symptoms.json
   def index
     @symptoms = current_user.symptoms
+    @symptoms_chart_data = current_user.chart_by_day_and_severity_for_all_symptoms
   end
 
   # GET /symptoms/1 or /symptoms/1.json
   def show
+    @symptoms_chart_data= @symptom.chart_by_day_and_severity
     @measurements = @symptom.measurements
   end
 

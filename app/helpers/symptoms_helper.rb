@@ -14,6 +14,8 @@ module SymptomsHelper
       it('Moderate')
     when 3
       it('Severe')
+    when 4
+      it('Critical')
     end
   end
 
@@ -25,8 +27,16 @@ module SymptomsHelper
       :attention
     when 2
       :warning
-    when 3
+    else
       :critical
     end
+  end
+
+  def chart_data_formatter(name: "Chart", data: [])
+    [{
+      name: it(name),
+      data: data,
+      marker: { symbol: "circle" }
+    }]
   end
 end

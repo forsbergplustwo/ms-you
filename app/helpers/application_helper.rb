@@ -7,4 +7,10 @@ module ApplicationHelper
     text
   end
 
+  def nav_item_selected?(url)
+    url_part = url.include?("?") ? url.split("?").first : url
+    path_part = request.path.include?("?") ? request.path.split("?").first : request.path
+    url_part == path_part
+  end
+
 end
