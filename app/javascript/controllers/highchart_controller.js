@@ -21,6 +21,7 @@ export default class extends Controller {
         "renderTo": this.element,
       },
       "xAxis": {
+        "plotLines": this.plotLines(),
         "title": {
           "text": null
         },
@@ -45,7 +46,7 @@ export default class extends Controller {
         },
         "min": 0,
         "gridLineColor": "#EEEEEF",
-        "allowDecimals": false
+        "allowDecimals": false,
       },
       "title": {
         "text": null
@@ -94,15 +95,35 @@ export default class extends Controller {
         "#5912D5",
         "#3063E1"
       ],
-      "annotations": [{
-        "labelOptions": {
-          "style": {
-            "fontSize": "12px",
-          }
-        },
-        "labels": this.annotationsLabelDataValue
-      }],
+      // "annotations": [{
+      //   "labelOptions": {
+      //     "style": {
+      //       "fontSize": "12px",
+      //     }
+      //   },
+      //   "labels": this.annotationsLabelDataValue
+      // }],
       "series": this.seriesDataValue
     });
+  }
+
+  plotLines() {
+    const lines = this.annotationsLabelDataValue.map((label) => {
+      return {
+        // Color grey as hex
+        color: '#BABFC3',
+        width: 2,
+        value: label.x,
+        label: {
+          style: {
+            fontSize: '12px',
+          },
+          verticalAlign: 'top',
+          text: label.text.toString(),
+        }
+      }
+    })
+    console.log(lines)
+    return lines
   }
 }

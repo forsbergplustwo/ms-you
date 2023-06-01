@@ -23,8 +23,6 @@
   text-align: center;
 }
 
-.Polaris-Frame-ToastManager__ToastWrapper {}
-
 .Polaris-Frame-Toast {
   transform: translate(-50%, -50%);
 }
