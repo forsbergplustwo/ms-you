@@ -13,14 +13,12 @@
 
   <% table.column(it('Actions')) do |symptom| %>
     <%= polaris_button(url: symptom_path(symptom)) { it('View details') } %>
-    <%= polaris_button(data: {
-        controller: "polaris",
-        target: "#symptom-#{symptom.id}-new-measurement-modal",
-        action: "polaris#openModal",
-      }) { it("Log symptom change") } %>
+    <%= polaris_button(
+      data: {
+        controller: "remote-modal",
+        remote_modal_url_value: new_measurement_path(symptom_id: symptom.id),
+        action: "remote-modal#load",
+    }) { it("Log symptom change") } %>
   <% end %>
 
-<% end %>
-<% symptoms.each do |symptom| %>
-  <%= render "symptoms/modals/new_measurement", symptom: symptom %>
 <% end %>

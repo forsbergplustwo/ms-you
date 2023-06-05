@@ -12,11 +12,12 @@
     <%= render "symptoms/severity_badge", severity: @symptom.current_severity %>
   <% end %>
 
-  <% page.primary_action(data: {
-        controller: "polaris",
-        target: "#symptom-#{@symptom.id}-new-measurement-modal",
-        action: "polaris#openModal",
-      }) { it("Log symptom change") } %>
+  <% page.primary_action(
+      data: {
+        controller: "remote-modal",
+        remote_modal_url_value: new_measurement_path(symptom_id: @symptom.id),
+        action: "remote-modal#load",
+    }) { it("Log symptom change") } %>
 
   <%= polaris_card do %>
     <%= render "symptoms/charts/show" %>
@@ -39,7 +40,5 @@
   <% end %>
 
 <% end %>
-
-<%= render "symptoms/modals/new_measurement", symptom: @symptom %>
 
 <%= render "modals/destroy", id: "destroy-symptom-modal", url: symptom_path(@symptom) %>

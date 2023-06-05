@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :symptoms
-  resources :measurements, only: %i[ destroy ]
+  resources :measurements, only: %i[ new destroy ]
 
   scope module: :users do
     resource :preferred_languages, only: :show
