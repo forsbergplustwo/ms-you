@@ -6,6 +6,8 @@ class Measurement < ApplicationRecord
   validates :severity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3 }
   validates :measured_at, presence: true
 
+  encrypts :description
+
   SEVERITIES_MAPPING = {
     0 => :none,
     1 => :mild,

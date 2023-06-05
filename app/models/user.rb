@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   include Clearance::User
+
+  encrypts :email, deterministic: true
+
   has_many :symptoms, dependent: :destroy
   has_many :measurements, through: :symptoms
 

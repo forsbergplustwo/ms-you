@@ -7,6 +7,8 @@ class Symptom < ApplicationRecord
   validates :user, presence: true
   validates :title, presence: true
 
+  encrypts :title
+
   def current_severity
     latest_measurement&.severity || 0
   end
