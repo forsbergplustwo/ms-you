@@ -41,4 +41,6 @@
 
 <% end %>
 
+<%= tag.div(data: { controller: "confetti", confetti_follow_value: false }) if @confetti_time %>
+
 <%= render "modals/destroy", id: "destroy-symptom-modal", url: symptom_path(@symptom) %>

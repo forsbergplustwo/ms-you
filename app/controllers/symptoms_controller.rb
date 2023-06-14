@@ -13,6 +13,7 @@ class SymptomsController < ApplicationController
   def show
     @symptoms_chart_data= @symptom.chart_by_day_and_severity
     @measurements = @symptom.measurements
+    @confetti_time = confetti_time?
   end
 
   # GET /symptoms/new
@@ -43,7 +44,7 @@ class SymptomsController < ApplicationController
   def update
     respond_to do |format|
       if @symptom.update(symptom_params)
-        format.html { redirect_to symptom_url(@symptom), notice: I18n.it("Symptom was successfully updated.", current_user.preferred_language) }
+        format.html { redirect_to symptom_url_with_possible_confetti, notice: I18n.it("Symptom was successfully updated.", current_user.preferred_language) }
         format.json { render :show, status: :ok, location: @symptom }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -71,5 +72,17 @@ class SymptomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def symptom_params
       params.require(:symptom).permit(:title, measurements_attributes: [:created_at, :severity, :description])
+    end
+
+    def symptom_url_with_possible_confetti
+      if symptom_params[:measurements_attributes].present? && symptom_params[:measurements_attributes].values.any? { |measurement| measurement[:severity].present? && measurement[:severity].to_i == 0 }
+        symptom_url(@symptom, confetti: true)
+      else
+        symptom_url(@symptom)
+      end
+    end
+
+    def confetti_time?
+      params[:confetti].present? && params[:confetti] == "true"
     end
 end
