@@ -4,6 +4,8 @@ class User < ApplicationRecord
   encrypts :email, deterministic: true
 
   has_many :symptoms, dependent: :destroy
+  has_many :notes, dependent: :destroy
+
   has_many :measurements, through: :symptoms
 
   AVAILABLE_LANGUAGES =[

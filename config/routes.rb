@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notes, except: %i[ show ]
   resources :symptoms
   resources :measurements, only: %i[ new destroy ]
 

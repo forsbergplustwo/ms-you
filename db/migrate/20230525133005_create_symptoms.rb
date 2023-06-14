@@ -3,7 +3,7 @@ class CreateSymptoms < ActiveRecord::Migration[7.0]
     create_table :symptoms do |t|
       t.string :title
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

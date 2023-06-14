@@ -18,15 +18,15 @@ class Symptom < ApplicationRecord
   end
 
   def current_measured_date
-    latest_measurement&.measured_at&.to_date
+    latest_measurement&.created_at&.to_date
   end
 
   def severity_on_day(day)
-    measurements.where("measured_at <= ?", day).order(measured_at: :desc).first&.severity || 0
+    measurements.where("created_at <= ?", day).order(created_at: :desc).first&.severity || 0
   end
 
   def chart_by_day_and_severity
-    days = measurements.group_by{|m| m.measured_at.to_date }
+    days = measurements.group_by{|m| m.created_at.to_date }
 
     # days = days.transform_keys { |k| k - 1.days }.merge(days)
     days[Date.today] = {} if days[Date.today].nil?
@@ -44,7 +44,7 @@ class Symptom < ApplicationRecord
   private
 
   def latest_measurement
-    measurements.order(measured_at: :desc).first
+    measurements.order(created_at: :desc).first
   end
 
 end

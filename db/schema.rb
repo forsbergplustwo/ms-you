@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_131846) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_165538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "measurements", force: :cascade do |t|
     t.bigint "symptom_id", null: false
-    t.datetime "measured_at"
     t.text "description"
     t.integer "severity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["symptom_id", "measured_at"], name: "index_measurements_on_symptom_id_and_measured_at", unique: true
-    t.index ["symptom_id"], name: "index_measurements_on_symptom_id"
+    t.index ["symptom_id", "created_at"], name: "index_measurements_on_symptom_id_and_created_at", unique: true
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_notes_on_user_id_and_created_at"
   end
 
   create_table "symptoms", force: :cascade do |t|
@@ -46,4 +53,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_131846) do
   end
 
   add_foreign_key "measurements", "symptoms"
+  add_foreign_key "notes", "users"
 end

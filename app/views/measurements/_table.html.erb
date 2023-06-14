@@ -1,6 +1,6 @@
 <%= polaris_index_table(measurements.reverse) do |table| %>
   <% table.column(it('Date')) do |measurement| %>
-    <%= polaris_text_style(variation: :strong) { l(measurement.measured_at.to_date, format: :long) } %>
+    <%= polaris_text_style(variation: :strong) { l(measurement.created_at.to_date, format: :long) } %>
   <% end %>
   <% table.column(it('Severity')) do |measurement| %>
     <%= render "symptoms/severity_badge", severity: measurement.severity %>

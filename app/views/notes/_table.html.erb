@@ -1,0 +1,28 @@
+<%= polaris_index_table(notes) do |table| %>
+
+  <% table.column(it('Date')) do |note| %>
+    <%= polaris_text_style(variation: :strong) { l(note.created_at.to_date, format: :long) } %>
+  <% end %>
+
+  <% table.column(it('Title')) do |note| %>
+    <%= polaris_text_style(variation: :strong) { note.title }%>
+    <br>
+    <%= polaris_text_style(variation: :subdued) {  note.description } %>
+  <% end %>
+
+  <% table.column(it('Actions')) do |note| %>
+    <%= polaris_button_group do |group| %>
+      <% group.button(
+        url: edit_note_path(note),
+      ) { it("Edit") } %>
+
+      <% group.button(
+        url: note_path(note),
+        data: { turbo_method: :delete }
+      ) do |button| %>
+        <%= polaris_icon(name: "DeleteMinor") %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

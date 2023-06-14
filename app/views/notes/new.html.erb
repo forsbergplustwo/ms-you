@@ -1,0 +1,12 @@
+
+<%= polaris_page(
+  narrow_width: true,
+  title: it("Add new note"),
+  subtitle: it("Add a short title and a date, with optional longer description."),
+  back_url: notes_path,
+) do |page| %>
+
+  <%= polaris_card do %>
+    <%= render "form", note: @note %>
+  <% end %>
+<% end %>

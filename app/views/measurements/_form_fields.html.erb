@@ -3,7 +3,7 @@
 <% end %>
 
 <% form_layout.item do %>
-  <%= measurement_fields.polaris_text_field :measured_at, label: it('Date of symptom change'), required: true, type: :date, value: Time.current.to_date %>
+  <%= measurement_fields.polaris_text_field :created_at, label: it('Date of symptom change'), required: true, type: :date, value: Time.current.to_date %>
 <% end %>
 
 <% form_layout.item do %>

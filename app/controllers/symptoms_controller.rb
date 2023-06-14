@@ -6,6 +6,7 @@ class SymptomsController < ApplicationController
   def index
     @symptoms = current_user.symptoms
     @symptoms_chart_data = current_user.chart_by_day_and_severity_for_all_symptoms
+    @notes_chart_data = current_user.notes.collect { |note| {x: note.created_at.to_i * 1000, text: "<a href='#{edit_note_path(note)}'>#{note.title}</a>" }}
   end
 
   # GET /symptoms/1 or /symptoms/1.json
@@ -69,6 +70,6 @@ class SymptomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def symptom_params
-      params.require(:symptom).permit(:title, measurements_attributes: [:measured_at, :severity, :description])
+      params.require(:symptom).permit(:title, measurements_attributes: [:created_at, :severity, :description])
     end
 end

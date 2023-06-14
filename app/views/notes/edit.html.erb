@@ -1,11 +1,12 @@
+
 <%= polaris_page(
   narrow_width: true,
   title: it('Edit'),
-  back_url: symptom_path(@symptom),
+  back_url: notes_path,
 ) do |page| %>
 
   <%= polaris_card do %>
-    <%= render "form", symptom: @symptom %>
+    <%= render "form", note: @note %>
   <% end %>
 
   <%= polaris_page_actions do |actions| %>
@@ -14,11 +15,12 @@
       outline: true,
       data: {
         controller: "polaris",
-        target: "#destroy-symptom-modal",
+        target: "#destroy-note-modal",
         action: "polaris#openModal",
       }
-    ) { it("Delete symptom") } %>
+    ) { it("Delete note") } %>
   <% end %>
+
 <% end %>
 
-<%= render "modals/destroy", id: "destroy-symptom-modal", url: symptom_path(@symptom) %>
+<%= render "modals/destroy", id: "destroy-note-modal", url: note_path(@note) %>

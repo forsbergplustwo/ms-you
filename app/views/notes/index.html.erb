@@ -1,0 +1,28 @@
+<%= polaris_page(
+  title: it('Notes'),
+  subtitle: "Add notes with dates, such as when you started a new medication, changed your diet or routine. Notes will appear on the symptoms graph, so you can see if they have an effect.",
+) do |page| %>
+
+  <% page.primary_action(url: new_note_path) { it("Add note") } %>
+
+  <% if @notes.any? %>
+
+    <%= polaris_card do %>
+      <%= render "notes/table", notes: @notes %>
+    <% end %>
+
+  <% else %>
+
+    <%= polaris_card do %>
+      <%= polaris_empty_state(
+        heading: it("No notes yet"),
+        image: "https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png",
+      ) do |state| %>
+        <% state.primary_action(url: new_note_path) { it("Add note") } %>
+        <p><%= it("Add your first note to get started.") %></p>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+<% end %>
