@@ -40,6 +40,11 @@ export default class extends Controller {
       default: "#ffc96b"
     },
 
+    thirdColor: {
+      type: String,
+      default: "#aee9d1"
+    },
+
     particleCount: {
       type: Number,
       default: 100
@@ -195,19 +200,19 @@ export default class extends Controller {
     return new Promise((resolve) => {
       var end = Date.now() + (this.durationValue * 1000);
       // go Buckeyes!
-      var colors = [this.firstColorValue, this.secondColorValue];
+      var colors = [this.firstColorValue, this.secondColorValue, this.thirdColorValue];
       const vm = this;
 
       (function frame() {
         vm.instance({
-          particleCount: 2,
+          particleCount: 3,
           angle: 60,
           spread: 55,
           origin: { x: 0 },
           colors: colors
         });
         vm.instance({
-          particleCount: 2,
+          particleCount: 3,
           angle: 120,
           spread: 55,
           origin: { x: 1 },
