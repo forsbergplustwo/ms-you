@@ -1,6 +1,12 @@
 <%= polaris_page(
   narrow_width: true,
-  title: it('Settings')
+  title: it('Settings'),
+  secondary_actions: [
+    {
+      url: new_password_path,
+      content: it("Change password"),
+    }
+  ],
 ) do |page| %>
 
   <%= polaris_card do %>

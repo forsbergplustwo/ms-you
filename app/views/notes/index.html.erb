@@ -3,7 +3,13 @@
   subtitle: "Add notes with dates, such as when you started a new medication, changed your diet or routine. Notes will appear on the symptoms graph, so you can see if they have an effect.",
 ) do |page| %>
 
-  <% page.primary_action(url: new_note_path) { it("Add note") } %>
+  <% page.primary_action(
+    data: {
+      controller: "remote-modal",
+      remote_modal_url_value: new_note_path,
+      action: "remote-modal#load",
+    },
+  ) { it("Add note") } %>
 
   <% if @notes.any? %>
 

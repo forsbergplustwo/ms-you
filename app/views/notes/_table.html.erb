@@ -1,4 +1,4 @@
-<%= polaris_index_table(notes) do |table| %>
+<%= polaris_index_table(notes.reverse) do |table| %>
 
   <% table.column(it('Date')) do |note| %>
     <%= polaris_text_style(variation: :strong) { l(note.created_at.to_date, format: :long) } %>

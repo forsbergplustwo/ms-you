@@ -12,8 +12,10 @@
         <%= form.polaris_text_field :email, label: it("Email"), type: :email, required: true %>
       <% end %>
 
-      <% form_layout.item do %>
-        <%= form.polaris_text_field :password, label: it("Password") + "#{current_user.password}", type: :password, value: current_user.password %>
+      <% if user.new_record? %>
+        <% form_layout.item do %>
+          <%= form.polaris_text_field :password, label: it("Password"), type: :password %>
+        <% end %>
       <% end %>
 
       <% form_layout.item do %>

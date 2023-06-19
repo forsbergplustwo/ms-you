@@ -2,30 +2,25 @@ class SymptomsController < ApplicationController
   before_action :require_login
   before_action :set_symptom, only: %i[ show edit update destroy ]
 
-  # GET /symptoms or /symptoms.json
   def index
     @symptoms = current_user.symptoms
     @symptoms_chart_data = current_user.chart_by_day_and_severity_for_all_symptoms
     @notes_chart_data = notes_chart_data
   end
 
-  # GET /symptoms/1 or /symptoms/1.json
   def show
     @symptoms_chart_data= @symptom.chart_by_day_and_severity
     @measurements = @symptom.measurements
     @confetti_time = confetti_time?
   end
 
-  # GET /symptoms/new
   def new
     @symptom = current_user.symptoms.new
   end
 
-  # GET /symptoms/1/edit
   def edit
   end
 
-  # POST /symptoms or /symptoms.json
   def create
     @symptom = current_user.symptoms.new(symptom_params)
 
@@ -40,7 +35,6 @@ class SymptomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /symptoms/1 or /symptoms/1.json
   def update
     respond_to do |format|
       if @symptom.update(symptom_params)
@@ -53,7 +47,6 @@ class SymptomsController < ApplicationController
     end
   end
 
-  # DELETE /symptoms/1 or /symptoms/1.json
   def destroy
     @symptom.destroy
 
@@ -75,7 +68,7 @@ class SymptomsController < ApplicationController
     end
 
     def symptom_url_with_possible_confetti
-      if symptom_params[:measurements_attributes].present? && symptom_params[:measurements_attributes].values.any? { |measurement| measurement[:severity].present? && measurement[:severity].to_i == 0 }
+      if severity_changing_to_none?
         symptom_url(@symptom, confetti: true)
       else
         symptom_url(@symptom)
@@ -88,5 +81,9 @@ class SymptomsController < ApplicationController
 
     def confetti_time?
       params[:confetti].present? && params[:confetti] == "true"
+    end
+
+    def severity_changing_to_none?
+      symptom_params[:measurements_attributes].present? && symptom_params[:measurements_attributes].values.any? { |measurement| measurement[:severity].present? && measurement[:severity].to_i == 0
     end
 end

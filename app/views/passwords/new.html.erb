@@ -1,11 +1,13 @@
+<% secondary_actions = signed_in? ? [] : [
+    { content: it("Sign up"), url: sign_up_path },
+    { content: it("Log in"), url: sign_in_path },
+  ]
+%>
 <%= polaris_page(
   narrow_width: true,
   title: it("Forgot your password?"),
   subtitle: it("Enter your email address and we will send you a link to reset your password."),
-  secondary_actions: [
-    { content: it("Sign up"), url: sign_up_path },
-    { content: it("Log in"), url: sign_in_path },
-  ]
+  secondary_actions: secondary_actions
 ) do |page| %>
 
   <%= polaris_card do %>

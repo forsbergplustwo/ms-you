@@ -1,6 +1,7 @@
 <%= turbo_frame_tag note, target: "_top" do %>
   <%= form_with(
     model: note,
+    id: "note-form",
     builder: Polaris::FormBuilder,
   ) do |form| %>
 
@@ -22,14 +23,6 @@
 
       <% form_layout.item do %>
         <%= form.polaris_text_field :description, label: it("Description"), multiline: true, value: note.description %>
-      <% end %>
-
-      <% form_layout.item do %>
-        <%= polaris_button(
-          submit: true,
-          primary: true,
-          data: {form_target: "submitButton"},
-        ) { it('Save') } %>
       <% end %>
 
     <% end %>

@@ -1,12 +1,20 @@
+<%= turbo_frame_tag :remote_modal do %>
 
-<%= polaris_page(
-  narrow_width: true,
-  title: it("New note"),
-  subtitle: it("Add a short title and a date, with optional longer description."),
-  back_url: params[:back_to].presence || notes_path,
-) do |page| %>
+  <%= polaris_modal(id: "new-note-modal", title: it("Add note"), open: true) do |modal| %>
 
-  <%= polaris_card do %>
-    <%= render "form", note: @note %>
+    <%= turbo_frame_tag @note, target: "_top" do %>
+      <%= render "form", note: @note %>
+    <% end %>
+
+    <% modal.primary_action(
+      submit: true,
+      form: "note-form",
+    ) do %>
+      <%= it("Save") %>
+    <% end %>
+    <% modal.secondary_action(data: {action: "polaris-modal#close"}) do %>
+      <%= it("Cancel") %>
+    <% end %>
   <% end %>
+
 <% end %>
