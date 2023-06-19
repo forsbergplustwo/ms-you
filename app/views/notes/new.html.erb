@@ -1,9 +1,9 @@
 
 <%= polaris_page(
   narrow_width: true,
-  title: it("Add new note"),
+  title: it("New note"),
   subtitle: it("Add a short title and a date, with optional longer description."),
-  back_url: notes_path,
+  back_url: params[:back_to].presence || notes_path,
 ) do |page| %>
 
   <%= polaris_card do %>

@@ -1,38 +1,5 @@
 <% frame.top_bar do |top_bar| %>
 
-  <% top_bar.secondary_menu do |secondary_menu| %>
-    <%= polaris_popover do |popover| %>
-
-      <% popover.button do |button| %>
-        <%= it(current_user.preferred_language) %>
-        <% button.icon(name: "LanguageMinor") %>
-      <% end %>
-
-      <%= polaris_action_list do |action_list| %>
-
-        <% action_list.section do |section| %>
-          <% User::AVAILABLE_LANGUAGES.each do |language| %>
-            <% section.item(
-              url: preferred_languages_path(language: language),
-              data: { turbo: false },
-            ) { language } %>
-          <% end %>
-        <% end %>
-
-        <% action_list.section(title: "For fun") do |section| %>
-          <% User::AVAILABLE_LANGUAGES_FOR_FUN.each do |language| %>
-            <% section.item(
-              url: preferred_languages_path(language: language),
-              data: { turbo: false },
-            ) { language } %>
-          <% end %>
-        <% end %>
-
-      <% end %>
-
-    <% end %>
-  <% end %>
-
   <% if signed_in? %>
     <% top_bar.user_menu(name: it("Account"), detail: current_user.email) do |user_menu| %>
 
@@ -42,16 +9,6 @@
       ) %>
 
       <%= polaris_action_list do |action_list| %>
-
-        <% action_list.item(
-          icon: "DeleteMinor",
-          destructive: true,
-          data: {
-            controller: "polaris",
-            target: "#destroy-account-modal",
-            action: "polaris#openModal",
-          }
-        ) { it("Delete account") } %>
 
         <% action_list.item(
           icon: "LogOutMinor",

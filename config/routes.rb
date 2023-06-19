@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   resources :symptoms
   resources :measurements, only: %i[ new destroy ]
 
-  scope module: :users do
-    resource :preferred_languages, only: :show
-  end
-
+  patch "/users/:id", to: "users#update", as: :user
+  get "/users/:id/edit", to: "users#edit", as: :edit_user
   delete "/users/:id", to: "users#destroy", as: :delete_user
 
   resources :users, only: [:create] do

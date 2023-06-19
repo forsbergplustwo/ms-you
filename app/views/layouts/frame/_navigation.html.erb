@@ -19,10 +19,10 @@
         link_arguments: {}
       ) %>
       <% section.item(
-        url: "/settings",
+        url: edit_user_path(current_user),
         label: it("Settings"),
         icon: "SettingsMajor",
-        selected: nav_item_selected?("/settings"),
+        selected: nav_item_selected?(edit_user_path(current_user)),
         link_arguments: {}
       ) %>
     <% end %>

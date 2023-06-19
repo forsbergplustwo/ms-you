@@ -13,7 +13,7 @@
       <% end %>
 
       <% form_layout.item do %>
-        <%= form.polaris_text_field :password, label: it("Password"), type: :password, required: true %>
+        <%= form.polaris_text_field :password, label: it("Password") + "#{current_user.password}", type: :password, value: current_user.password %>
       <% end %>
 
       <% form_layout.item do %>

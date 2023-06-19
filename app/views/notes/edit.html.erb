@@ -1,8 +1,8 @@
 
 <%= polaris_page(
   narrow_width: true,
-  title: it('Edit'),
-  back_url: notes_path,
+  title: it('Edit note'),
+  back_url: params[:back_to].presence || notes_path,
 ) do |page| %>
 
   <%= polaris_card do %>

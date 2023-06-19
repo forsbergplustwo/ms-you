@@ -2,7 +2,7 @@
   title: it('Symptoms tracker'),
   subtitle: @symptoms.present? ? it("Track your symptoms over time. The graph shows the total severity of all your symptoms, so you can see when an attack is coming on or is starting to subside.") : it("Track your symptoms over time."),
   secondary_actions: [
-    { content: it("Add note"), url: new_note_path },
+    { content: it("Add note"), url: new_note_path(back_to: symptoms_path) },
   ],
 ) do |page| %>
 
