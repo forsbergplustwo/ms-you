@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def it(key, **opts)
     return key if current_user&.preferred_language == "English"
     text = super(key, **opts)
@@ -12,5 +11,4 @@ module ApplicationHelper
     path_part = request.path.include?("?") ? request.path.split("?").first : request.path
     url_part == path_part
   end
-
 end

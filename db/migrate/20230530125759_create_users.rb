@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :confirmation_token, limit: 128
       t.string :remember_token, limit: 128, null: false
       t.string :preferred_language, default: "English"
-
     end
     add_index :users, :email
     add_index :users, :confirmation_token, unique: true

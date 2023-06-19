@@ -3,7 +3,7 @@ class Measurement < ApplicationRecord
   has_one :user, through: :symptom
 
   validates :symptom, presence: true
-  validates :severity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 4 }
+  validates :severity, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 4}
   validates :created_at, presence: true
 
   encrypts :description
@@ -17,9 +17,9 @@ class Measurement < ApplicationRecord
   }
 
   def self.by_day_and_severity(user, records)
-    days = records.group_by{|m| m.created_at.to_date }
+    days = records.group_by { |m| m.created_at.to_date }
 
-    #days = days.transform_keys { |k| k - 1.days }.merge(days)
+    # days = days.transform_keys { |k| k - 1.days }.merge(days)
     days[Date.today] = {} if days[Date.today].nil?
     days[days.keys.min - 1.day] = {}
 
@@ -36,5 +36,4 @@ class Measurement < ApplicationRecord
       }
     end.sort_by { |day| day[:x] }
   end
-
 end

@@ -37,7 +37,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -50,7 +50,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -73,8 +73,8 @@ end
 
 # APP SPECIFIC GEMS
 gem "letter_opener", group: :development
-gem "dotenv", "~> 2.8", :group => :development
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "dotenv", "~> 2.8", group: :development
+gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "polaris_view_components", "~> 0.13.5"
 gem "hotwire-livereload", "~> 1.2"

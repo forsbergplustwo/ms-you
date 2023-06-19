@@ -1,5 +1,4 @@
 module SymptomsHelper
-
   def severity_select_options
     Measurement::SEVERITIES_MAPPING.keys.collect { |severity| [severity_name(severity), severity] }
   end
@@ -7,20 +6,20 @@ module SymptomsHelper
   def severity_name(severity)
     case severity
     when 0
-      it('None')
+      it("None")
     when 1
-      it('Mild')
+      it("Mild")
     when 2
-      it('Moderate')
+      it("Moderate")
     when 3
-      it('Severe')
+      it("Severe")
     when 4
-      it('Critical')
+      it("Critical")
     end
   end
 
   def severity_badge_status(severity)
-  case severity
+    case severity
     when 0
       :success
     when 1
@@ -36,7 +35,7 @@ module SymptomsHelper
     [{
       name: it(name),
       data: data,
-      marker: { symbol: "circle" }
+      marker: {symbol: "circle"}
     }]
   end
 end

@@ -26,7 +26,7 @@ class Symptom < ApplicationRecord
   end
 
   def chart_by_day_and_severity
-    days = measurements.group_by{|m| m.created_at.to_date }
+    days = measurements.group_by { |m| m.created_at.to_date }
 
     # days = days.transform_keys { |k| k - 1.days }.merge(days)
     days[Date.today] = {} if days[Date.today].nil?
@@ -46,5 +46,4 @@ class Symptom < ApplicationRecord
   def latest_measurement
     measurements.order(created_at: :desc).first
   end
-
 end

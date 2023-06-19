@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :require_login
-  before_action :set_note, only: %i[ edit update destroy ]
+  before_action :set_note, only: %i[edit update destroy]
 
   def index
     @notes = current_user.notes
@@ -45,13 +45,14 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = current_user.notes.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:title, :description, :created_at)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = current_user.notes.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.require(:note).permit(:title, :description, :created_at)
+  end
 end

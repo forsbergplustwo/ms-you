@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :notes, except: %i[ show ]
+  resources :notes, except: %i[show]
   resources :symptoms
-  resources :measurements, only: %i[ new destroy ]
+  resources :measurements, only: %i[new destroy]
 
   patch "/users/:id", to: "users#update", as: :user
   get "/users/:id/edit", to: "users#edit", as: :edit_user

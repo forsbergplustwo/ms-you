@@ -17,7 +17,7 @@ class SymptomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create symptom" do
     assert_difference("Symptom.count") do
-      post symptoms_url, params: { symptom: { description: @symptom.description, severity: @symptom.severity, start_date: @symptom.start_date, title: @symptom.title } }
+      post symptoms_url, params: {symptom: {description: @symptom.description, severity: @symptom.severity, start_date: @symptom.start_date, title: @symptom.title}}
     end
 
     assert_redirected_to symptom_url(Symptom.last)
@@ -34,7 +34,7 @@ class SymptomsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update symptom" do
-    patch symptom_url(@symptom), params: { symptom: { description: @symptom.description, severity: @symptom.severity, start_date: @symptom.start_date, title: @symptom.title } }
+    patch symptom_url(@symptom), params: {symptom: {description: @symptom.description, severity: @symptom.severity, start_date: @symptom.start_date, title: @symptom.title}}
     assert_redirected_to symptom_url(@symptom)
   end
 

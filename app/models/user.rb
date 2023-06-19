@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   encrypts :email, deterministic: true
 
-  AVAILABLE_LANGUAGES =[
+  AVAILABLE_LANGUAGES = [
     "Danish",
     "English",
     "Finnish",
@@ -24,11 +24,10 @@ class User < ApplicationRecord
   ].freeze
 
   AVAILABLE_LANGUAGES_FOR_FUN = [
-    "Pirate",
+    "Pirate"
   ].freeze
 
-  validates :preferred_language, inclusion: { in: AVAILABLE_LANGUAGES + AVAILABLE_LANGUAGES_FOR_FUN }
-
+  validates :preferred_language, inclusion: {in: AVAILABLE_LANGUAGES + AVAILABLE_LANGUAGES_FOR_FUN}
 
   def chart_by_day_and_severity_for_all_symptoms
     Measurement.by_day_and_severity(self, measurements)
