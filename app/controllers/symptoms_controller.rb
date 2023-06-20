@@ -84,6 +84,6 @@ class SymptomsController < ApplicationController
     end
 
     def severity_changing_to_none?
-      symptom_params[:measurements_attributes].present? && symptom_params[:measurements_attributes].values.any? { |measurement| measurement[:severity].present? && measurement[:severity].to_i == 0
+      symptom_params[:measurements_attributes].present? && symptom_params[:measurements_attributes].values.any? { |measurement| measurement[:severity].present? && measurement[:severity].to_i == 0 }
     end
 end
