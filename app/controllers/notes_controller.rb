@@ -3,7 +3,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[edit update destroy]
 
   def index
-    @notes = current_user.notes
+    @notes = current_user.notes.load_async
   end
 
   def new
@@ -29,7 +29,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
+        format.html { redirect_to notes_url, notice: "Note was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

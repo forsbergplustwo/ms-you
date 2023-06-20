@@ -22,11 +22,11 @@ class Symptom < ApplicationRecord
   end
 
   def severity_on_day(day)
-    measurements.where("created_at <= ?", day).order(created_at: :desc).first&.severity || 0
+    measurements.load_async.where("created_at <= ?", day).order(created_at: :desc).first&.severity || 0
   end
 
   def chart_by_day_and_severity
-    days = measurements.group_by { |m| m.created_at.to_date }
+    days = measurements.load_async.group_by { |m| m.created_at.to_date }
 
     # days = days.transform_keys { |k| k - 1.days }.merge(days)
     days[Date.today] = {} if days[Date.today].nil?

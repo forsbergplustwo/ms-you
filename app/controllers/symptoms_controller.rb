@@ -3,9 +3,9 @@ class SymptomsController < ApplicationController
   before_action :set_symptom, only: %i[ show edit update destroy ]
 
   def index
-    @symptoms = current_user.symptoms
+    @symptoms = current_user.symptoms.load_async
     @symptoms_chart_data = current_user.chart_by_day_and_severity_for_all_symptoms
-    @notes_chart_data = notes_chart_data
+    @notes_chart_data = current_user.chart_by_day_for_all_notes
   end
 
   def show
@@ -73,10 +73,6 @@ class SymptomsController < ApplicationController
       else
         symptom_url(@symptom)
       end
-    end
-
-    def notes_chart_data
-      current_user.notes.collect { |note| {x: note.created_at.to_i * 1000, text: "<a href='#{edit_note_path(note, back_to: symptoms_path)}'>#{note.title}</a>" }}
     end
 
     def confetti_time?

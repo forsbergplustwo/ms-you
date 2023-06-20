@@ -25,7 +25,7 @@ class Measurement < ApplicationRecord
 
     days.map do |day, measurements|
       day_sum = 0
-      user.symptoms.find_each do |symptom|
+      user.symptoms.load_async.find_each do |symptom|
         day_sum += symptom.severity_on_day(day)
       end
       day_integer = day.to_time.to_i * 1000
