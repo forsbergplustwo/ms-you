@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
   def update
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to user_path(current_user), notice: I18n.it("Settings successfully updated.", current_user.preferred_language) }
+        format.html { redirect_to edit_user_path(current_user), notice: I18n.it("Settings successfully updated.", current_user.preferred_language) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

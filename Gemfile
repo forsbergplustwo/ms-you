@@ -81,7 +81,7 @@ gem "hotwire-livereload", "~> 1.2"
 
 gem "groupdate", "~> 6.2"
 
-gem "instant18n", "~> 0.4.0"
+gem "instant18n", "~> 0.3.0", github: "forsbergplustwo/instant18n", branch: "credentials"
 
 gem "http_logger", "~> 0.7.0"
 
