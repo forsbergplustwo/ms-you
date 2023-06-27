@@ -31,10 +31,10 @@ class User < ApplicationRecord
   validates :preferred_language, inclusion: {in: AVAILABLE_LANGUAGES + AVAILABLE_LANGUAGES_FOR_FUN}
 
   def chart_by_day_and_severity_for_all_symptoms
-    Measurement.by_day_and_severity(self, measurements.load_async)
+    Measurement.by_day_and_severity(self, measurements)
   end
 
   def chart_by_day_for_all_notes
-    notes.load_async.collect { |note| {x: note.created_at.to_i * 1000, text: "<a href='#{edit_note_path(note, back_to: symptoms_path)}'>#{note.title}</a>" }}
+    notes.collect { |note| {x: note.created_at.to_i * 1000, text: "<a href='#{edit_note_path(note, back_to: symptoms_path)}'>#{note.title}</a>"} }
   end
 end

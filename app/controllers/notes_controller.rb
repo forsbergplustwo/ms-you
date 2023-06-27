@@ -3,7 +3,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[edit update destroy]
 
   def index
-    @notes = current_user.notes.load_async
+    @notes = current_user.notes
   end
 
   def new
